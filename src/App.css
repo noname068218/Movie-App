@@ -1,12 +1,20 @@
 body {
   background-color: #090a0e;
 }
-
-.container {
+.max-center {
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
+}
 
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container {
+  padding: 15px;
   background-color: #0f1014;
 
   display: grid;
@@ -17,4 +25,40 @@ body {
 
 .movie-cover {
   width: 100%;
+}
+
+.movie-palacholder {
+  min-height: 259px;
+  background-color: white;
+  color: #0f1014;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero {
+  min-height: 500px;
+  background-position: top center;
+  background-size: cover;
+  display: flex;
+  align-items: flex-end;
+}
+
+.hero-content {
+  max-width: 70%;
+  padding-bottom: 60px;
+}
+
+.hero-title {
+  font-size: 72px;
+  margin: 0;
+}
+
+.button {
+  background-color: #0f1014;
+  color: white;
+  border: 1px solid white;
+  outline: none;
+  padding: 10px 15px;
+  cursor: pointer;
 }

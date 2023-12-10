@@ -61,7 +61,7 @@ function App() {
 
   useEffect(() => {
     fetchMovies();
-  }, []);
+  }, [fetchMovies]);
 
   function renderMovies() {
     return movies.map(movie => (

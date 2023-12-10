@@ -60,8 +60,9 @@ function App() {
   };
 
   useEffect(() => {
+    if (!searchKey === '') return;
     fetchMovies();
-  }, []);
+  }, [searchKey]);
 
   const renderMovies = () =>
     movies.map(movie => (

@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 import MovieCard from './MovieCard';
 import '../App.css';
@@ -16,7 +16,7 @@ function App() {
   const [playTrailer, setPlayTrailer] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchMovies = useCallback(async searchKey => {
+  const fetchMovies = async searchKey => {
     const type = searchKey ? 'search' : 'discover';
     try {
       setIsLoading(true);
@@ -37,37 +37,31 @@ function App() {
     } finally {
       setIsLoading(false);
     }
-  }, []);
+  };
 
-  const fetchMovie = useCallback(
-    async id => {
-      try {
-        const { data } = await axios.get(`${API_URL}/movie/${id}`, {
-          params: {
-            api_key: API_KEY,
-            append_to_response: 'videos',
-          },
-        });
-        return data;
-      } catch (error) {
-        console.error('Error fetching movie:', error);
-      }
-    },
-    [API_KEY, API_URL]
-  );
+  const fetchMovie = async id => {
+    try {
+      const { data } = await axios.get(`${API_URL}/movie/${id}`, {
+        params: {
+          api_key: API_KEY,
+          append_to_response: 'videos',
+        },
+      });
+      return data;
+    } catch (error) {
+      console.error('Error fetching movie:', error);
+    }
+  };
 
-  const selectMovie = useCallback(
-    async movieId => {
-      setPlayTrailer(false);
-      const data = await fetchMovie(movieId);
-      setSelectedMovie(data);
-    },
-    [fetchMovie]
-  );
+  const selectMovie = async movieId => {
+    setPlayTrailer(false);
+    const data = await fetchMovie(movieId);
+    setSelectedMovie(data);
+  };
 
   useEffect(() => {
     fetchMovies();
-  }, [fetchMovies]);
+  }, []);
 
   const renderMovies = () =>
     movies.map(movie => (

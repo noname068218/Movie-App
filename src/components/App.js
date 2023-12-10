@@ -59,12 +59,16 @@ function App() {
     setSelectedMovie(data);
   };
 
+  const searchMovies = async e => {
+    e.preventDefault();
+    fetchMovies(searchKey);
+  };
+
   useEffect(() => {
     fetchMovies();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  function renderMovies() {
+  const renderMovies = () => {
     return movies.map(movie => (
       <MovieCard
         key={movie.id}
@@ -72,11 +76,6 @@ function App() {
         selectMovie={() => selectMovie(movie.id)}
       />
     ));
-  }
-
-  const searchMovies = e => {
-    e.preventDefault();
-    fetchMovies(searchKey);
   };
 
   const renderTrailer = () => {

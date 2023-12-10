@@ -61,7 +61,8 @@ function App() {
 
   useEffect(() => {
     fetchMovies();
-  }, [fetchMovies]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   function renderMovies() {
     return movies.map(movie => (

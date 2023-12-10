@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import MovieCard from './MovieCard';
@@ -61,17 +62,17 @@ function App() {
 
   useEffect(() => {
     fetchMovies();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const renderMovies = () =>
-    movies.map(movie => (
+  function renderMovies() {
+    return movies.map(movie => (
       <MovieCard
         key={movie.id}
         movie={movie}
         selectMovie={() => selectMovie(movie.id)}
       />
     ));
+  }
 
   const searchMovies = e => {
     e.preventDefault();

@@ -39,25 +39,31 @@ function App() {
     }
   }, []);
 
-  const fetchMovie = async id => {
-    try {
-      const { data } = await axios.get(`${API_URL}/movie/${id}`, {
-        params: {
-          api_key: API_KEY,
-          append_to_response: 'videos',
-        },
-      });
-      return data;
-    } catch (error) {
-      console.error('Error fetching movie:', error);
-    }
-  };
+  const fetchMovie = useCallback(
+    async id => {
+      try {
+        const { data } = await axios.get(`${API_URL}/movie/${id}`, {
+          params: {
+            api_key: API_KEY,
+            append_to_response: 'videos',
+          },
+        });
+        return data;
+      } catch (error) {
+        console.error('Error fetching movie:', error);
+      }
+    },
+    [API_KEY, API_URL]
+  );
 
-  const selectMovie = async movieId => {
-    setPlayTrailer(false);
-    const data = await fetchMovie(movieId);
-    setSelectedMovie(data);
-  };
+  const selectMovie = useCallback(
+    async movieId => {
+      setPlayTrailer(false);
+      const data = await fetchMovie(movieId);
+      setSelectedMovie(data);
+    },
+    [fetchMovie]
+  );
 
   useEffect(() => {
     fetchMovies();

@@ -18,7 +18,6 @@ function App() {
   const [movie, setMovie] = useState({ title: 'Loading Movies' });
 
   useEffect(() => {
-    async function fetchMovies() {}
     fetchMovies();
   }, []);
 
@@ -38,7 +37,7 @@ function App() {
     );
 
     console.log(data.results[0]);
-    setMovies(data.results);
+    setMovies(prevState => [...data.results, ...prevState]);
     setMovie(data.results[0]);
 
     if (data.results.length) {

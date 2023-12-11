@@ -18,6 +18,7 @@ function App() {
   const [movie, setMovie] = useState({ title: 'Loading Movies' });
 
   useEffect(() => {
+    async function fetchMovies() {}
     fetchMovies();
   }, []);
 

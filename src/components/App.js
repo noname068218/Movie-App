@@ -18,7 +18,7 @@ function App() {
   const [movie, setMovie] = useState({ title: 'Loading Movies' });
 
   useEffect(() => {
-    if (!selectMovie) return;
+    async function fetchMovies() {}
     fetchMovies();
   }, []);
 
